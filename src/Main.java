@@ -13,7 +13,7 @@
 // до вершины лестницы.
 
 public class Main {
-    private static int N = 4, K = 3, count = 0;
+    private static int N = 10, K = 3, count = 0;
 
     public static void main(String[] args) {
         prygok(N, 1, "");
@@ -23,14 +23,31 @@ public class Main {
     private static void prygok(int remain, int prygokNumb, String path) {
         for (int i = 1; i <= K; i++) {
             if (remain - i >= 0) {
-                System.out.println("Прыжок №" + prygokNumb + " на " + i + " ступеней");
+                System.out.println("Прыжок №" + prygokNumb + " на " + i + " " + ladder(i));
                 if ((remain - i) > 0) prygok(remain - i, prygokNumb + 1, path + i + "+");
                 if ((remain - i) == 0) {
-                    count++;
-                    System.out.println("Найден путь №" + count);
+                    System.out.println("Найден путь №" + ++count);
                     System.out.println("Путь:" + path + i);
                 }
             }
         }
     }
+
+    private static String ladder(int number) {
+        if (number > 20) number = number % 10;
+        switch (number) {
+            case 1:
+                return ("ступень");
+            case 2:
+                return ("ступени");
+            case 3:
+                return ("ступени");
+            case 4:
+                return ("ступени");
+            default:
+                return ("ступеней");
+        }
+    }
+
+
 }
